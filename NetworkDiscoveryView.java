@@ -35,17 +35,7 @@ public class NetworkDiscoveryView extends JFrame{
 	public NetworkDiscoveryView(){
 		ArrayList<String> test = new ArrayList<String>();
 		ArrayList<Integer> testChannels = new ArrayList<Integer>();
-		testChannels.add(0);
-		testChannels.add(0);
-		testChannels.add(0);
-		testChannels.add(2);
-		testChannels.add(2);
-		testChannels.add(1);
-		testChannels.add(7);
-		testChannels.add(7);
-		testChannels.add(7);
-		testChannels.add(7);
-		testChannels.add(7);
+		
 		test.add("CU Wireless");
 		test.add("eduroam");
 		test.add("Goat House");
@@ -78,7 +68,7 @@ public class NetworkDiscoveryView extends JFrame{
 			}
 		}
 		if(temp != null){
-			dp.update(temp.ESSID, ""+temp.channel, "Unknown", "Unknown", temp.quality, ""+temp.strength+"/70", "Unknown", "Unknown");
+			dp.update(temp.ESSID, ""+temp.channel, "Unknown", "Unknown", temp.quality, ""+temp.strength+" dbm", "Unknown", "Unknown");
 		}
 	}
 	public void updateScreen(List<AP> list){

@@ -40,6 +40,14 @@ public class WIFIScan{
 			e.printStackTrace();
 		}
 		
+		/*
+		try {
+			s = new Scanner(new File("ex.txt"));
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		*/
 		
 		AP temp = null;
 		APs = new ArrayList<AP>();
@@ -60,21 +68,21 @@ public class WIFIScan{
 			while(temp != null){
 				if (string.indexOf("Address") == 20){
 					parts = string.split("Address: ");
-					System.out.println(parts[1]);
+					//System.out.println(parts[1]);
 					temp.address = parts[1];
 					break;
 				}
 				
 				if (string.indexOf("Channel") == 20){
 					parts = string.split("Channel:");
-					System.out.println(parts[1]);
+					//System.out.println(parts[1]);
 					temp.channel =  Integer.parseInt(parts[1]);
 					break;
 				}
 				
 				if (string.indexOf("ESSID") == 20){
 					parts = string.split("\"");
-					System.out.println(parts[1]);
+					//System.out.println(parts[1]);
 					temp.ESSID = parts[1];
 					break;
 					
@@ -83,11 +91,11 @@ public class WIFIScan{
 					parts = string.split("Quality=");
 					parts = parts[1].split(" ");
 					System.out.println(parts[0]);
-					temp.quality = parts[1];
+					temp.quality = parts[0];
 					
 					parts = string.split("Signal level=");
 					parts = parts[1].split(" ");
-					System.out.println(parts[0]);
+					//System.out.println(parts[0]);
 					temp.strength =  Integer.parseInt(parts[0]);
 					
 					break;
