@@ -26,26 +26,27 @@ public class WIFIScan{
 	}
 		
 	public int scan(String wlan){
-		/*
+		File f = new File("ex.txt");
+		if (f.exists()){
+			try {
+				s = new Scanner(f);
+			} catch (FileNotFoundException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		} else {
 		String cmd =  "iwlist " + wlan + " scan" ;
 		Process p;
-		try {
-			p = Runtime.getRuntime().exec(cmd);
-			InputStream output = p.getInputStream();
-			s = new Scanner(output);
-			p.waitFor();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}catch (InterruptedException e) {
-			e.printStackTrace();
-		}
-		*/
-		
-		try {
-			s = new Scanner(new File("ex.txt"));
-		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			try {
+				p = Runtime.getRuntime().exec(cmd);
+				InputStream output = p.getInputStream();
+				s = new Scanner(output);
+				p.waitFor();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}catch (InterruptedException e) {
+				e.printStackTrace();
+			}
 		}
 		
 		AP temp = null;
@@ -75,7 +76,7 @@ public class WIFIScan{
 				if (string.indexOf("Channel") == 20){
 					parts = string.split("Channel:");
 					//System.out.println(parts[1]);
-					temp.channel =  Integer.parseInt(parts[1]);
+					temp.channel =  Integer.parseInt(parts[1]); 
 					break;
 				}
 				
