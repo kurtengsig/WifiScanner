@@ -31,11 +31,13 @@ public class NetworkDiscoveryView extends JFrame{
 	List<AP> accessPoints;
 	TabPanel 	  tp;
 	DetailsPanel dp;
+	ComparisonPanel cp;
+	
 	
 	public NetworkDiscoveryView(){
 		ArrayList<String> test = new ArrayList<String>();
 		ArrayList<Integer> testChannels = new ArrayList<Integer>();
-		
+
 		test.add("CU Wireless");
 		test.add("eduroam");
 		test.add("Goat House");
@@ -44,9 +46,9 @@ public class NetworkDiscoveryView extends JFrame{
 		BoxLayout layout = new BoxLayout(getContentPane(), BoxLayout.Y_AXIS);
 		this.setLayout(layout);
 		
-		tp = new TabPanel(this, test);
+		tp = new TabPanel(this, null);
 		dp = new DetailsPanel(this);
-		ComparisonPanel cp = new ComparisonPanel(this, testChannels);
+		cp = new ComparisonPanel(this, testChannels);
 		
 		this.add(tp);
 		this.add(dp);
@@ -56,7 +58,7 @@ public class NetworkDiscoveryView extends JFrame{
 		this.setSize(1000, 600);
 		this.setVisible(true);
 		this.pack();
-		dp.update("Example","4","Yes","2.4","18/23","High","10 Mb/s","Beacon");
+		//dp.update("Example","4","Yes","2.4","18/23","High","10 Mb/s","Beacon");
 	}
 	public void notifyTabChange(String tab){
 		//Called when one of the buttons are pressed to show info on a different access point
@@ -71,8 +73,12 @@ public class NetworkDiscoveryView extends JFrame{
 			dp.update(temp.ESSID, ""+temp.channel, "Unknown", "Unknown", temp.quality, ""+temp.strength+" dbm", "Unknown", "Unknown");
 		}
 	}
+	
+	
 	public void updateScreen(List<AP> list){
 		accessPoints = list;
+		ArrayList<Integer> channelList = new ArrayList<Integer>();
+		
 		System.out.println("Calling update");
 		Collections.sort(list);
 		int index = list.size();
@@ -81,7 +87,12 @@ public class NetworkDiscoveryView extends JFrame{
 		ArrayList<AP> tabList = new ArrayList<AP>();
 		for(int i=0; i<index; i++){
 			tabList.add(list.get(i));
+			channelList.add(list.get(i).channel);
 		}
+		AP temp = list.get(0);
+		dp.update(temp.ESSID, ""+temp.channel, "Unknown", "Unknown", temp.quality, ""+temp.strength+" dbm", "Unknown", "Unknown");
+		//channelList.add(10);
+		cp.update(channelList);
 		tp.updateTabs(tabList);
 	}
 }

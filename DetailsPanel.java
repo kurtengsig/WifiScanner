@@ -5,6 +5,7 @@ import java.awt.Graphics;
 import javax.swing.JPanel;
 
 
+
 public class DetailsPanel extends JPanel{
 	private String name = "";
 	private String channel = "";
@@ -40,11 +41,15 @@ public class DetailsPanel extends JPanel{
 		name = n;
 		channel = chan;
 		encrypted = e;
-		freq = f;
+		freq = toFrequency(Integer.parseInt(chan));
 		qual = q;
 		siglev = sig;
 		bitrate = br;
 		mode = m;
 		this.repaint();
+	}
+	
+	public String toFrequency(int channel){
+		return ("2.4"+((channel-1)*5+12));
 	}
 }

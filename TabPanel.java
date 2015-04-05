@@ -16,10 +16,12 @@ public class TabPanel extends JPanel{
 	public TabPanel(NetworkDiscoveryView n, ArrayList<String> titles){
 		frame = n;
 		buttons = new ArrayList<JButton>();
-		GridLayout l = new GridLayout(0, titles.size());
-		this.setLayout(l);
-		this.setBackground(Color.LIGHT_GRAY);
+
 		if(titles != null){
+			GridLayout l = new GridLayout(0, titles.size());
+			this.setLayout(l);
+			this.setBackground(Color.LIGHT_GRAY);
+			
 			for(String s: titles){
 				JButton j = new JButton(s);
 				j.addActionListener(new ActionListener(){
@@ -42,6 +44,11 @@ public class TabPanel extends JPanel{
 		for(int i=0; i<buttons.size(); i++){
 			this.remove(buttons.get(i));
 		}
+		
+		GridLayout l = new GridLayout(0, list.size());
+		this.setLayout(l);
+		this.setBackground(Color.LIGHT_GRAY);
+		
 		for(AP s: list){
 			JButton j = new JButton(s.ESSID);
 			j.addActionListener(new ActionListener(){

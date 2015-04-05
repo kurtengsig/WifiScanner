@@ -26,7 +26,7 @@ public class WIFIScan{
 	}
 		
 	public int scan(String wlan){
-		
+		/*
 		String cmd =  "iwlist " + wlan + " scan" ;
 		Process p;
 		try {
@@ -39,15 +39,14 @@ public class WIFIScan{
 		}catch (InterruptedException e) {
 			e.printStackTrace();
 		}
+		*/
 		
-		/*
 		try {
 			s = new Scanner(new File("ex.txt"));
 		} catch (FileNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		*/
 		
 		AP temp = null;
 		APs = new ArrayList<AP>();

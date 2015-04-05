@@ -17,13 +17,18 @@ public class ComparisonPanel extends JPanel{
 	public Dimension getPreferredSize(){
 		return new Dimension(900, height);
 	}
+	
+	public void update(ArrayList<Integer> p){
+		points = p;
+	}
+	
 	public void paintComponent(Graphics g){
 		g.setColor(Color.white);
 		g.fillRect(0, 0, 900, height);
 		g.setColor(Color.black);
 		g.drawLine(0, 0, 900, 0);
 		drawGridLines(g, 10, 8);
-		plotPoints(g, 10, 8);
+		plotPoints(g, 11, 8);
 		drawAxis(g, "Channels In Use", "2.4 GHz Channels", "Frequency of Use");
 	}
 	public void drawAxis(Graphics g, String title, String xAxis, String yAxis){
@@ -68,7 +73,7 @@ public class ComparisonPanel extends JPanel{
 		g.setColor(Color.black);
 		for(int j=0; j<x; j++){
 			for(int i=0; i<points.size(); i++){
-				if(points.get(i) == currentX){
+				if(points.get(i) == currentX+1){
 					currentYCount+=1;
 				}
 			}

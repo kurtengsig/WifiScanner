@@ -7,7 +7,7 @@ public class AP implements Comparable<AP>{
 	String address;
 	String ESSID;
 	String quality;
-	
+	String frequency;
 	int channel;
 	int strength;
 	
