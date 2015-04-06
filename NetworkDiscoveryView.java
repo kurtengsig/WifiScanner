@@ -82,8 +82,8 @@ public class NetworkDiscoveryView extends JFrame{
 		System.out.println("Calling update");
 		Collections.sort(list);
 		int index = list.size();
-		if(index > 6)
-			index = 6;
+		if(index > 8)
+			index = 8;
 		ArrayList<AP> tabList = new ArrayList<AP>();
 		for(int i=0; i<index; i++){
 			tabList.add(list.get(i));

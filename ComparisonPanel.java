@@ -21,7 +21,10 @@ public class ComparisonPanel extends JPanel{
 	public void update(ArrayList<Integer> p){
 		points = p;
 	}
-	
+	public PlottedPoints getSuggestedChannel(){
+		
+		return new PlottedPoints(-1,-1);
+	}
 	public void paintComponent(Graphics g){
 		g.setColor(Color.white);
 		g.fillRect(0, 0, 900, height);
@@ -65,7 +68,7 @@ public class ComparisonPanel extends JPanel{
 		g.setColor(Color.black);
 	}
 	public void plotPoints(Graphics g, int x, int y){
-		int xIncrement    = (800)/x;
+		int xIncrement    = (800)/(x-1);
 		int yIncrement    = (height-80)/y;
 		int currentYCount = 0;
 		int currentX      = 0;
@@ -78,17 +81,19 @@ public class ComparisonPanel extends JPanel{
 				}
 			}
 			plotted.add(new PlottedPoints(currentX, currentYCount));
-			System.out.println("Plotting for points: "+currentX+","+currentYCount);
-			g.fillOval(40-2+(xIncrement*currentX), height-(45+ (yIncrement*currentYCount)), 5, 5);
+			//System.out.println("Plotting for points: "+currentX+","+currentYCount);
+			g.fillOval(40-3+(xIncrement*currentX), (height-(37+ (yIncrement*currentYCount))-10), 6, 6);
 			currentX +=1;
 			currentYCount = 0;
 		}
 		PlottedPoints prevPoint = plotted.get(0);
 		for(int i=1; i<plotted.size(); i++){
-			g.drawLine(40+(xIncrement*prevPoint.x), height-(40+ (yIncrement*prevPoint.y)), 
-					40+(xIncrement*plotted.get(i).x), height-(40+ (yIncrement*plotted.get(i).y)));
+			g.drawString(""+i, 36+(xIncrement*prevPoint.x), height - 25);
+			g.drawLine(40+(xIncrement*prevPoint.x), (height-(37+ (yIncrement*prevPoint.y+3))-4), 
+					40+(xIncrement*plotted.get(i).x), (height-(37+ (yIncrement*plotted.get(i).y+3)))-4);
 			prevPoint = plotted.get(i);
 		}
+		g.drawString(""+x, 36+(xIncrement*(x-1)), height - 25);
 		g.setColor(Color.black);
 	}
 }
