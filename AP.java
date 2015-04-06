@@ -8,6 +8,11 @@ public class AP implements Comparable<AP>{
 	String ESSID;
 	String quality;
 	String frequency;
+	String encryption;
+	String mode;
+	String bitrates = "";
+	
+	boolean encryptionOn;
 	int channel;
 	int strength;
 	

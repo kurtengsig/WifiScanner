@@ -37,7 +37,7 @@ public class DetailsPanel extends JPanel{
 		g.drawString("Bit Rate:", labelOffsetX, 140+labelOffsetY);     g.drawString(bitrate, labelWidth, 140+labelOffsetY);
 		g.drawString("Mode:", labelOffsetX, 160+labelOffsetY);         g.drawString(mode, labelWidth, 160+labelOffsetY);
 	}
-	public void update(String n, String chan, String e, String f, String q, String sig, String br, String m){
+	public void update(String n, String chan, String e, String q, String sig, String br, String m){
 		name = n;
 		channel = chan;
 		encrypted = e;

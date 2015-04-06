@@ -26,7 +26,7 @@ public class WIFIScan{
 	}
 		
 	public int scan(String wlan){
-		File f = new File("ex.txt");
+		File f = new File("ex1.txt");
 		if (f.exists()){
 			try {
 				s = new Scanner(f);
@@ -90,21 +90,56 @@ public class WIFIScan{
 				if (string.indexOf("Quality") == 20){
 					parts = string.split("Quality=");
 					parts = parts[1].split(" ");
-					System.out.println(parts[0]);
+					//System.out.println(parts[0]);
 					temp.quality = parts[0];
 					
 					parts = string.split("Signal level=");
 					parts = parts[1].split(" ");
 					//System.out.println(parts[0]);
 					temp.strength =  Integer.parseInt(parts[0]);
-					
 					break;
-				}			
+				}
+
+				if (string.indexOf("Encryption key") == 20){
+					parts = string.split("Encryption key:");
+					System.out.println(parts[1]);
+					if (parts[1].indexOf("on")==0){
+						temp.encryptionOn = true;
+						temp.encryption = "WEP";
+					} else {
+						temp.encryptionOn = false;
+						temp.encryption = "None";
+					}
+					break;
+				}
+				
+				if (string.indexOf("IE: WPA Version 1") == 20){
+					temp.encryption = "WPA";
+					break;
+				}
+			
+				if (string.indexOf("IE: IEEE 802.11i/WPA2 Version 1") == 20){
+					temp.encryption = "WPA2";
+					break;
+				}
+				
+				if (string.indexOf("Mode:") == 20){
+					parts = string.split("Mode:");
+					temp.mode = parts[1];
+				}
+				
+				if (string.indexOf("Bit Rates:") == 20){
+					parts = string.split("Bit Rates:");
+					temp.bitrates = temp.bitrates+parts[1]+"; ";
+				}
+				
+				Mode:
+				
 				break;
 			}			
 		}
 		
-		
+		s.close();
 		
 		return numAP;
 	}
