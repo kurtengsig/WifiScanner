@@ -33,6 +33,7 @@ public class ComparisonPanel extends JPanel{
 		drawGridLines(g, 10, 8);
 		plotPoints(g, 11, 8);
 		drawAxis(g, "Channels In Use", "2.4 GHz Channels", "Frequency of Use");
+		getSuggestedAP();
 	}
 	public void drawAxis(Graphics g, String title, String xAxis, String yAxis){
 		Graphics2D g2 = (Graphics2D)g;
@@ -75,6 +76,7 @@ public class ComparisonPanel extends JPanel{
 		ArrayList<PlottedPoints> plotted = new ArrayList<PlottedPoints>();
 		g.setColor(Color.black);
 		int suggestion = getSuggestedChannel();
+		int suggestedAp = getSuggestedAP()+1;
 		for(int j=0; j<x; j++){
 			for(int i=0; i<points.size(); i++){
 				if(points.get(i) == currentX+1){
@@ -86,6 +88,14 @@ public class ComparisonPanel extends JPanel{
 			g.fillOval(40-3+(xIncrement*currentX), (height-(37+ (yIncrement*currentYCount))-10), 6, 6);
 			if(currentX == suggestion){
 				g.setColor(Color.BLUE);
+				g.drawOval(40-5+(xIncrement*currentX), (height-(39+ (yIncrement*currentYCount))-10), 10, 10);
+				g.drawOval(40-6+(xIncrement*currentX), (height-(40+ (yIncrement*currentYCount))-10), 12, 12);
+				g.drawOval(40-7+(xIncrement*currentX), (height-(41+ (yIncrement*currentYCount))-10), 14, 14);
+				
+				g.setColor(Color.BLACK);
+			}
+			if(currentX == suggestedAp){
+				g.setColor(Color.RED);
 				g.drawOval(40-5+(xIncrement*currentX), (height-(39+ (yIncrement*currentYCount))-10), 10, 10);
 				g.drawOval(40-6+(xIncrement*currentX), (height-(40+ (yIncrement*currentYCount))-10), 12, 12);
 				g.drawOval(40-7+(xIncrement*currentX), (height-(41+ (yIncrement*currentYCount))-10), 14, 14);
@@ -155,6 +165,19 @@ public class ComparisonPanel extends JPanel{
 				minChannel = i;
 		}
 		return minChannel;
+	}
+	public int getSuggestedAP(){
+		int apIndex = 0;
+		int apTotal = 0;
+		for(int i=0; i<aps.size(); i++){
+			String qual = aps.get(i).quality;
+			int q = Integer.parseInt(qual.split("/")[0]);
+			if(aps.get(i).strength + q > apTotal){
+				apIndex = i;
+			}
+		}
+		//System.out.print(aps.get(apIndex).ESSID);
+		return apIndex;
 	}
 }
 
