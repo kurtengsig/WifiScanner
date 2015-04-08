@@ -80,7 +80,7 @@ public class NetworkDiscoveryView extends JFrame{
 		ArrayList<Integer> channelList = new ArrayList<Integer>();
 		
 		System.out.println("Calling update");
-		Collections.sort(list);
+		Collections.sort(list,Collections.reverseOrder());
 		int index = list.size();
 		if(index > 8)
 			index = 8;
@@ -89,10 +89,12 @@ public class NetworkDiscoveryView extends JFrame{
 			tabList.add(list.get(i));
 			channelList.add(list.get(i).channel);
 		}
-		AP temp = list.get(0);
-		dp.update(temp.ESSID, ""+temp.channel, temp.encryption, temp.quality, temp.strength+" dbm", temp.bitrates, temp.mode, temp.wps);
-		//channelList.add(10);
-		cp.update(channelList, accessPoints);
-		tp.updateTabs(tabList);
+		if (index > 1){
+			AP temp = list.get(0);
+			dp.update(temp.ESSID, ""+temp.channel, temp.encryption, temp.quality, temp.strength+" dbm", temp.bitrates, temp.mode, temp.wps);
+			channelList.add(10);
+			cp.update(channelList, accessPoints);
+			tp.updateTabs(tabList);
+		}
 	}
 }

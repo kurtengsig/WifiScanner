@@ -11,7 +11,8 @@ public class WIFIScan{
 	int numAP;
 	List<AP> APs;
 	Scanner s;
-	
+	String cmd;
+
 	//public static void main(String[] args) throws FileNotFoundException{
 	//	WIFIScan w = new WIFIScan();	
 	//	w.scan("wlan2");
@@ -26,6 +27,7 @@ public class WIFIScan{
 	}
 		
 	public int scan(String wlan){
+
 		File f = new File("ex1.txt");
 		if (f.exists()){
 			try {
@@ -35,9 +37,19 @@ public class WIFIScan{
 				e.printStackTrace();
 			}
 		} else {
-		String cmd =  "ifconfig wlan2 down; iw wlan2 set type managed; ifconfig wlan2 up;iwlist scan" ;
+
 		Process p;
 			try {
+				cmd =  "ifconfig wlan1 down";
+                                Runtime.getRuntime().exec(cmd).waitFor();
+
+                                cmd =  "iw wlan1 set type managed";
+                                Runtime.getRuntime().exec(cmd).waitFor();
+
+                                cmd =  "ifconfig wlan1 up";
+                                Runtime.getRuntime().exec(cmd).waitFor();
+
+				cmd =  "iwlist wlan1 scan";
 				p = Runtime.getRuntime().exec(cmd);
 				InputStream output = p.getInputStream();
 				s = new Scanner(output);
@@ -48,7 +60,7 @@ public class WIFIScan{
 				e.printStackTrace();
 			}
 		}
-		
+
 		AP temp = null;
 		APs = new ArrayList<AP>();
 		numAP = 0;
@@ -60,6 +72,7 @@ public class WIFIScan{
 		{
 			x = null;
 			string = s.nextLine();
+			//System.out.println(string);
 			if (string.indexOf("Cell") == 10){
 				temp = new AP();
 				APs.add(temp);
@@ -132,13 +145,12 @@ public class WIFIScan{
 					parts = string.split("Bit Rates:");
 					temp.bitrates = temp.bitrates+parts[1]+"; ";
 				}
-				
-				Mode:
-				
 				break;
-			}			
+			}
 		}
 		
+		//System.out.println(numAP);
+		//System.out.println("DONE WIFI POINTS");
 		s.close();
 		
 		f = new File("wps1.txt");
@@ -150,10 +162,20 @@ public class WIFIScan{
 				e.printStackTrace();
 			}
 		} else {
-			String cmd =  "ifconfig wlan2 down; iw wlan2 set type monitor; ifconfig wlan2 up;make wash &&  ./wash -i wlan2" ;
 			Process p;
 			try {
-				p = Runtime.getRuntime().exec(cmd);
+				//System.out.println("KKK");
+                        	cmd =  "ifconfig wlan1 down";
+                        	Runtime.getRuntime().exec(cmd).waitFor();
+
+				cmd =  "iw wlan1 set type monitor";
+                                Runtime.getRuntime().exec(cmd).waitFor();
+
+				cmd =  "ifconfig wlan1 up";
+                                Runtime.getRuntime().exec(cmd).waitFor();
+
+                        	cmd = "./wash -i wlan1";
+                        	p = Runtime.getRuntime().exec(cmd);
 				InputStream output = p.getInputStream();
 				s = new Scanner(output);
 				p.waitFor();
@@ -172,7 +194,7 @@ public class WIFIScan{
 			
 			for (AP ap:APs){
 				if (ap.ESSID.equals(parts[5])){
-					System.out.println(parts[3]);
+					//System.out.println(parts[3]);
 					if (parts[3].equals("0.0"))
 						ap.wps = "No";
 					else 
@@ -181,7 +203,7 @@ public class WIFIScan{
 			}
 		}
 		s.close();
-		
+		System.out.println("???");
 		return numAP;
 	}
 	
