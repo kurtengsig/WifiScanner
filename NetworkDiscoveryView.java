@@ -48,7 +48,7 @@ public class NetworkDiscoveryView extends JFrame{
 		
 		tp = new TabPanel(this, null);
 		dp = new DetailsPanel(this);
-		cp = new ComparisonPanel(this, testChannels);
+		cp = new ComparisonPanel(this, testChannels, accessPoints);
 		
 		this.add(tp);
 		this.add(dp);
@@ -92,7 +92,7 @@ public class NetworkDiscoveryView extends JFrame{
 		AP temp = list.get(0);
 		dp.update(temp.ESSID, ""+temp.channel, temp.encryption, temp.quality, temp.strength+" dbm", temp.bitrates, temp.mode, temp.wps);
 		//channelList.add(10);
-		cp.update(channelList);
+		cp.update(channelList, accessPoints);
 		tp.updateTabs(tabList);
 	}
 }
