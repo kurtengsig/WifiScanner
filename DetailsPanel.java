@@ -15,6 +15,8 @@ public class DetailsPanel extends JPanel{
 	private String siglev = "";
 	private String bitrate = "";
 	private String mode = "";
+	private String wps = "";
+	
 	private int    labelOffsetX = 30;
 	private int    labelOffsetY = 20;
 	private int    labelWidth	= labelOffsetX + 95;
@@ -36,8 +38,9 @@ public class DetailsPanel extends JPanel{
 		g.drawString("Signal Level:", labelOffsetX, 120+labelOffsetY); g.drawString(siglev, labelWidth, 120+labelOffsetY);
 		g.drawString("Bit Rate:", labelOffsetX, 140+labelOffsetY);     g.drawString(bitrate, labelWidth, 140+labelOffsetY);
 		g.drawString("Mode:", labelOffsetX, 160+labelOffsetY);         g.drawString(mode, labelWidth, 160+labelOffsetY);
+		g.drawString("WPS:", labelOffsetX, 180+labelOffsetY);          g.drawString(wps, labelWidth, 180+labelOffsetY);
 	}
-	public void update(String n, String chan, String e, String q, String sig, String br, String m){
+	public void update(String n, String chan, String e, String q, String sig, String br, String m, String w){
 		name = n;
 		channel = chan;
 		encrypted = e;
@@ -46,6 +49,7 @@ public class DetailsPanel extends JPanel{
 		siglev = sig;
 		bitrate = br;
 		mode = m;
+		wps = w;
 		this.repaint();
 	}
 	

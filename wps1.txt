@@ -1,0 +1,4 @@
+D8:50:E6:AD:73:A0       1            -77        0.0               No                REPUBLIC of ROTAR
+00:19:5B:0C:D3:DA       3            -61        0.0               No                pudlo
+64:66:B3:C7:06:93       6            -41        1.0               Yes               ASN
+40:F2:01:EA:17:E7      11            -49        1.0               No                BELL946

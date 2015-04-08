@@ -11,6 +11,7 @@ public class AP implements Comparable<AP>{
 	String encryption;
 	String mode;
 	String bitrates = "";
+	String wps = "unknown";
 	
 	boolean encryptionOn;
 	int channel;

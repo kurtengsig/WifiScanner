@@ -70,7 +70,7 @@ public class NetworkDiscoveryView extends JFrame{
 			}
 		}
 		if(temp != null){
-			dp.update(temp.ESSID, ""+temp.channel, temp.encryption, temp.quality, temp.strength+" dbm", temp.bitrates, temp.mode);
+			dp.update(temp.ESSID, ""+temp.channel, temp.encryption, temp.quality, temp.strength+" dbm", temp.bitrates, temp.mode, temp.wps);
 		}
 	}
 	
@@ -90,7 +90,7 @@ public class NetworkDiscoveryView extends JFrame{
 			channelList.add(list.get(i).channel);
 		}
 		AP temp = list.get(0);
-		dp.update(temp.ESSID, ""+temp.channel, temp.encryption, temp.quality, temp.strength+" dbm", temp.bitrates, temp.mode);
+		dp.update(temp.ESSID, ""+temp.channel, temp.encryption, temp.quality, temp.strength+" dbm", temp.bitrates, temp.mode, temp.wps);
 		//channelList.add(10);
 		cp.update(channelList);
 		tp.updateTabs(tabList);

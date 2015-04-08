@@ -35,7 +35,7 @@ public class WIFIScan{
 				e.printStackTrace();
 			}
 		} else {
-		String cmd =  "iwlist " + wlan + " scan" ;
+		String cmd =  "ifconfig wlan2 down; iw wlan2 set type managed; ifconfig wlan2 up;iwlist scan" ;
 		Process p;
 			try {
 				p = Runtime.getRuntime().exec(cmd);
@@ -102,7 +102,7 @@ public class WIFIScan{
 
 				if (string.indexOf("Encryption key") == 20){
 					parts = string.split("Encryption key:");
-					System.out.println(parts[1]);
+					//System.out.println(parts[1]);
 					if (parts[1].indexOf("on")==0){
 						temp.encryptionOn = true;
 						temp.encryption = "WEP";
@@ -139,6 +139,47 @@ public class WIFIScan{
 			}			
 		}
 		
+		s.close();
+		
+		f = new File("wps1.txt");
+		if (f.exists()){
+			try {
+				s = new Scanner(f);
+			} catch (FileNotFoundException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		} else {
+			String cmd =  "ifconfig wlan2 down; iw wlan2 set type monitor; ifconfig wlan2 up;make wash &&  ./wash -i wlan2" ;
+			Process p;
+			try {
+				p = Runtime.getRuntime().exec(cmd);
+				InputStream output = p.getInputStream();
+				s = new Scanner(output);
+				p.waitFor();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}catch (InterruptedException e) {
+				e.printStackTrace();
+			}
+		}
+		
+		while(s.hasNextLine())
+		{
+			string = s.nextLine();
+			parts = string.split("\\s+");		
+			//System.out.println(parts[5]);
+			
+			for (AP ap:APs){
+				if (ap.ESSID.equals(parts[5])){
+					System.out.println(parts[3]);
+					if (parts[3].equals("0.0"))
+						ap.wps = "No";
+					else 
+						ap.wps = "Yes";
+				}
+			}
+		}
 		s.close();
 		
 		return numAP;
