@@ -76,7 +76,7 @@ public class ComparisonPanel extends JPanel{
 		ArrayList<PlottedPoints> plotted = new ArrayList<PlottedPoints>();
 		g.setColor(Color.black);
 		int suggestion = getSuggestedChannel();
-		int suggestedAp = getSuggestedAP()+1;
+		int suggestedAp = getSuggestedAP();
 		for(int j=0; j<x; j++){
 			for(int i=0; i<points.size(); i++){
 				if(points.get(i) == currentX+1){
@@ -94,7 +94,7 @@ public class ComparisonPanel extends JPanel{
 				
 				g.setColor(Color.BLACK);
 			}
-			if(currentX == suggestedAp){
+			if(currentX == suggestedAp-1){
 				g.setColor(Color.RED);
 				g.drawOval(40-5+(xIncrement*currentX), (height-(39+ (yIncrement*currentYCount))-10), 10, 10);
 				g.drawOval(40-6+(xIncrement*currentX), (height-(40+ (yIncrement*currentYCount))-10), 12, 12);
@@ -168,12 +168,13 @@ public class ComparisonPanel extends JPanel{
 	}
 	public int getSuggestedAP(){
 		int apIndex = 0;
-		int apTotal = 0;
+		int apTotal = -1000;
 		for(int i=0; i<aps.size(); i++){
 			String qual = aps.get(i).quality;
 			int q = Integer.parseInt(qual.split("/")[0]);
-			if(aps.get(i).strength + q > apTotal){
-				apIndex = i;
+			if(aps.get(i).strength > apTotal){
+				apIndex = aps.get(i).channel;
+				apTotal = aps.get(i).strength;
 			}
 		}
 		//System.out.print(aps.get(apIndex).ESSID);

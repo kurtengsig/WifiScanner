@@ -80,7 +80,7 @@ public class NetworkDiscoveryView extends JFrame{
 		ArrayList<Integer> channelList = new ArrayList<Integer>();
 		
 		System.out.println("Calling update");
-		Collections.sort(list);
+		Collections.sort(list,Collections.reverseOrder());
 		int index = list.size();
 		if(index > 8)
 			index = 8;
