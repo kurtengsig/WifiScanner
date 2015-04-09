@@ -172,7 +172,7 @@ public class WIFIScan{
 			
 			for (AP ap:APs){
 				if (ap.ESSID.equals(parts[1])){
-					System.out.println(parts[3]);
+					//System.out.println(parts[3]);
 					if (parts[0].equals("0.0"))
 						ap.wps = "No";
 					else 
