@@ -168,7 +168,7 @@ public class WIFIScan{
 		{
 			string = s.nextLine();
 			parts = string.split("\\s+");		
-			//System.out.println(parts[5]);
+			System.out.println(string);
 			
 			for (AP ap:APs){
 				if (ap.ESSID.equals(parts[1])){
