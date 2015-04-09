@@ -1,0 +1,8 @@
+pcap library is required for WPS to function.
+If using Debian/Ubuntu 
+Use the command:
+sudo apt-get install libpcap0.8-dev
+
+To run the scanner
+cd /WifiScanner
+rm *.class; javac main.java; java main "interface name"
