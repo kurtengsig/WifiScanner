@@ -13,10 +13,9 @@ To run the scanner
 cd /WifiScanner
 rm *.class; javac main.java; java main "interface name"
 
-<<<<<<< HEAD
 To run the scanner using sample input is you don't have a proper wireless interface
 rm *.class; javac main.java; java main example
-=======
+
 The system must be run as root in order to get all access points. Otherwise it will
 only give the access point you are connected to.
->>>>>>> f0ec9f075aa71306c753e2c10847f4a90c908550
+
