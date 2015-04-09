@@ -3,6 +3,10 @@ If using Debian/Ubuntu
 Use the command:
 sudo apt-get install libpcap0.8-dev
 
+Scanner must be run as root to function properly
 To run the scanner
 cd /WifiScanner
 rm *.class; javac main.java; java main "interface name"
+
+To run the scanner using sample input is you don't have a proper wireless interface
+rm *.class; javac main.java; java main example

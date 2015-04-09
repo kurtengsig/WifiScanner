@@ -142,7 +142,7 @@ public class WIFIScan{
 		s.close();
 		
 		f = new File("wps1.txt");
-		if (f.exists()){
+		if (wlan.equals("example")){
 			try {
 				s = new Scanner(f);
 			} catch (FileNotFoundException e) {
