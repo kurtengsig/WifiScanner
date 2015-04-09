@@ -1,3 +1,8 @@
+This system requires that your NIC is compatible with the 'iwlist scan' command.
+Known NIC that are compatible include:
+- TP-Link TL-WN722N
+- TP-Link TL-WN822N
+
 pcap library is required for WPS to function.
 If using Debian/Ubuntu 
 Use the command:
@@ -8,5 +13,10 @@ To run the scanner
 cd /WifiScanner
 rm *.class; javac main.java; java main "interface name"
 
+<<<<<<< HEAD
 To run the scanner using sample input is you don't have a proper wireless interface
 rm *.class; javac main.java; java main example
+=======
+The system must be run as root in order to get all access points. Otherwise it will
+only give the access point you are connected to.
+>>>>>>> f0ec9f075aa71306c753e2c10847f4a90c908550
